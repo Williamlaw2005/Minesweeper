@@ -1,6 +1,6 @@
 import de.bezier.guido.*;
-//Declare and initialize constants NUM_ROWS and NUM_COLS = 20
-public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 2;
+//Declare and initialize constants NUM_ROWS and NUM_COLS = 20 
+public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 20;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -103,16 +103,20 @@ public class MSButton
         else if(countMines(myRow, myCol) > 0){
           setLabel(countMines(myRow, myCol));
         }
-        else{
-          for(int r = myRow - 1; myRow <= myRow+1; r++){
-            for(int c = myCol - 1; myCol <= myCol+1; c++){
-              if(isValid(r, c)){
-                
-              }
+        
+        else if(!isFlagged()) {
+          for(int r = -1; r <= 1; r++) {
+            C_LOOP: for(int c = -1; c <= 1; c++) {
+              if(!isValid(myRow + r, myCol + c) || buttons[myRow + r][myCol + c].getClicked() || buttons[myRow + r][myCol + c].isFlagged())
+                continue C_LOOP;
+              else
+                buttons[myRow + r][myCol + c].mousePressed();
             }
           }
         }
      }
+     
+   public boolean getClicked() {return clicked;}
     public void draw () 
     {    
         if (flagged)
