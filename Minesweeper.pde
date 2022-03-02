@@ -1,6 +1,6 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20 
-public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 20;
+public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 2;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -14,9 +14,10 @@ void setup ()
     
     //your code to initialize buttons goes here
     buttons = new MSButton[NUM_ROWS][NUM_COLS];
-    for(int r = 0; r < NUM_ROWS;r++)
+    for(int r = 0; r < NUM_ROWS;r++) {
       for(int c = 0; c < NUM_ROWS;c++)
         buttons[r][c] = new MSButton(r,c);
+    }
     
     setMines();
 }
@@ -27,7 +28,7 @@ public void setMines()
     int c = (int)(Math.random()*NUM_COLS);
     if(bombs.contains(buttons[r][c]) == false){
       bombs.add(buttons[r][c]);
-      System.out.println(r + ", " + c);
+      //System.out.println(r + ", " + c);
     }
   }
 }
@@ -40,16 +41,29 @@ public void draw ()
 }
 public boolean isWon()
 {
-    //your code here
-    return false;
+    int winSum = 0;
+    System.out.println("a");
+    for(int i = NUM_ROWS-1; i >= 0; i--){
+      for(int q = NUM_COLS-1; q >= 0; q--){
+        if(buttons[i][q].isFlagged() && bombs.contains(buttons[i][q]))
+          winSum++;
+         if(winSum == NUM_BOMBS)
+           return true;
+      }
+    }
+      return false;
+      
 }
 public void displayLosingMessage()
 {
-    
+ 
 }
 public void displayWinningMessage()
 {
-    //your code here
+     if(isWon() == true){
+      
+      buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Win");
+    }
 }
 public boolean isValid(int r, int c)
 { 
@@ -116,7 +130,10 @@ public class MSButton
         }
      }
      
-   public boolean getClicked() {return clicked;}
+   public boolean getClicked() 
+   {
+     return clicked;
+   }
     public void draw () 
     {    
         if (flagged)
