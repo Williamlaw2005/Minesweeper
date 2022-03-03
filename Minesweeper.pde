@@ -1,6 +1,6 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20 
-public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 2;
+public final static int NUM_ROWS = 10; public final static int NUM_COLS = 10; public final static int NUM_BOMBS = 2;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -39,6 +39,14 @@ public void draw ()
     if(isWon() == true)
         displayWinningMessage();
 }
+public boolean isLose()
+{
+    for(int i = NUM_ROWS-1; i >= 0; i--)
+      for(int q = NUM_COLS-1; q >= 0; q--)
+        if(!buttons[i][q].isFlagged() && bombs.contains(buttons[i][q]))
+          return true;
+      return false;
+}
 public boolean isWon()
 {
     int winSum = 0;
@@ -56,13 +64,31 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
- 
+ if(isLose() == true){
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 4].setLabel("Y");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 3].setLabel("O");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 2].setLabel("U");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 1].setLabel(" ");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2].setLabel("L");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 + 1].setLabel("O");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 + 2].setLabel("S");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 + 3].setLabel("E");
+      noLoop();
+     
+ }
 }
+
 public void displayWinningMessage()
 {
      if(isWon() == true){
-      
-      buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("You Win");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 4].setLabel("Y");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 3].setLabel("O");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 2].setLabel("U");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 - 1].setLabel(" ");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2].setLabel("W");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 + 1].setLabel("I");
+      buttons[NUM_ROWS/2 ][NUM_COLS/2 + 2].setLabel("N");
+      noLoop();
     }
 }
 public boolean isValid(int r, int c)
@@ -137,7 +163,7 @@ public class MSButton
     public void draw () 
     {    
         if (flagged)
-            fill(0);
+            fill(255);
         else if(clicked && bombs.contains(this) ) 
              fill(255,0,0);
         else if(clicked)
