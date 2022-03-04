@@ -36,15 +36,20 @@ public void setMines()
 public void draw ()
 {
     background( 0 );
+    System.out.println(isLose());
     if(isWon() == true)
         displayWinningMessage();
+  
 }
 public boolean isLose()
 {
-    for(int i = NUM_ROWS-1; i >= 0; i--)
-      for(int q = NUM_COLS-1; q >= 0; q--)
-        if(!buttons[i][q].isFlagged() && bombs.contains(buttons[i][q]))
+    for(int i = NUM_ROWS-1; i >= 0; i--){
+      for(int q = NUM_COLS-1; q >= 0; q--){
+        if(bombs.contains(buttons[i][q])){
           return true;
+        }
+      }
+    }
       return false;
 }
 public boolean isWon()
@@ -64,7 +69,7 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
- if(isLose() == true && mousePressed == true){
+ if(isLose() == true){
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 4].setLabel("Y");
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("O");
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("U");
@@ -74,11 +79,11 @@ public void displayLosingMessage()
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("S");
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("E");
       noLoop();
-       for(int i = 0; i < bombs.size(); i++){
+      for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).mousePressed();
-       }  
-       
-   }
+        System.out.println(i);
+      }
+   }  
 }
 public void displayWinningMessage()
 {
@@ -134,14 +139,17 @@ public class MSButton
 
     // called by manager
     public void mousePressed () 
-    {
+    {   
+ 
         if(mouseButton == LEFT){
           clicked = true;
-          if(bombs.contains(this)){
+        if(bombs.contains(this)){
             displayLosingMessage();
-          }
+            
+          } 
+   
           else if(countMines(myRow, myCol) > 0){
-          setLabel(countMines(myRow, myCol));
+            setLabel(countMines(myRow, myCol));
           }
           else if(!isFlagged()) {
           for(int r = -1; r <= 1; r++) {
