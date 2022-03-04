@@ -28,7 +28,6 @@ public void setMines()
     int c = (int)(Math.random()*NUM_COLS);
     if(bombs.contains(buttons[r][c]) == false){
       bombs.add(buttons[r][c]);
-      //System.out.println(r + ", " + c);
     }
   }
 }
@@ -50,7 +49,6 @@ public boolean isLose()
 public boolean isWon()
 {
     int winSum = 0;
-    System.out.println("a");
     for(int i = NUM_ROWS-1; i >= 0; i--){
       for(int q = NUM_COLS-1; q >= 0; q--){
         if(buttons[i][q].getClicked() && !bombs.contains(buttons[i][q]))
