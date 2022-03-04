@@ -1,9 +1,9 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20 
-public final static int NUM_ROWS = 10; public final static int NUM_COLS = 10; public final static int NUM_BOMBS = 2;
+public final static int NUM_ROWS = 20; public final static int NUM_COLS = 20; public final static int NUM_BOMBS = 50;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
-private boolean isLooping = false;
+
 void setup ()
 {
     size(400, 400);
@@ -28,6 +28,7 @@ public void setMines()
     int c = (int)(Math.random()*NUM_COLS);
     if(bombs.contains(buttons[r][c]) == false){
       bombs.add(buttons[r][c]);
+      System.out.println(r + ", " + c);
     }
   }
 }
@@ -82,13 +83,13 @@ public void displayLosingMessage()
 public void displayWinningMessage()
 {
      if(isWon() == true && mousePressed == true){
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 4].setLabel("Y");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("O");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("U");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel(" ");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel("W");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("I");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("N");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 4].setLabel("Y");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("O");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("U");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel(" ");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel("W");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("I");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("N");
       noLoop();
     }
     
@@ -153,7 +154,7 @@ public class MSButton
           }
         }
         }  
-        if(mouseButton == RIGHT){
+        if(mouseButton == RIGHT && clicked == false){
           flagged = !flagged;
         } 
      }
@@ -165,7 +166,7 @@ public class MSButton
     public void draw () 
     {    
         if (flagged)
-            fill(255);
+            fill(0,255,255);
         else if(clicked && bombs.contains(this) ) 
              fill(255,0,0);
         else if(clicked)
