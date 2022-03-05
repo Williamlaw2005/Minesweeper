@@ -80,7 +80,7 @@ public void displayLosingMessage()
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("E");
       noLoop();
       for(int i = 0; i < bombs.size();i++) {
-        bombs.get(i).mousePressed();
+        bombs.get(i).clicked = true;
         System.out.println(i);
       }
    }  
@@ -141,7 +141,7 @@ public class MSButton
     public void mousePressed () 
     {   
  
-        if(mouseButton == LEFT){
+        if(mouseButton == LEFT && !flagged){
           clicked = true;
         if(bombs.contains(this)){
             displayLosingMessage();
