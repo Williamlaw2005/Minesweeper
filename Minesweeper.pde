@@ -1,6 +1,6 @@
 import de.bezier.guido.*;
 //Declare and initialize constants NUM_ROWS and NUM_COLS = 20 
-public final static int NUM_ROWS = 11; public final static int NUM_COLS = 11; public final static int NUM_BOMBS = 50;
+public final static int NUM_ROWS = 11; public final static int NUM_COLS = 11; public final static int NUM_BOMBS = 2;
 private MSButton[][] buttons; //2d array of minesweeper buttons
 private ArrayList <MSButton> bombs = new ArrayList <MSButton>(); //ArrayList of just the minesweeper buttons that are mined
 
@@ -64,31 +64,31 @@ public boolean isWon()
 public void displayLosingMessage()
 {
  if(isLose() == true){
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 4].setLabel("Y");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("O");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("U");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel(" ");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel("L");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("O");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("S");
-      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("E");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("Y");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("O");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel("U");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel(" ");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("L");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("O");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("S");
+      buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 4].setLabel("E");
       for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).clicked = true;
       }
-   } 
-   noLoop();
+   }
 }
+
 public void displayWinningMessage()
 {
      if(isWon() == true && mousePressed == true){
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 4].setLabel("Y");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("O");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("U");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel(" ");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel("W");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("I");
-        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("N");
-      noLoop();
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 3].setLabel("Y");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 2].setLabel("O");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 - 1].setLabel("U");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2].setLabel(" ");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("W");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("I");
+        buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("N");
+      
     } 
 }
 public boolean isValid(int r, int c)
