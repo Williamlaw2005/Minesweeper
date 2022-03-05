@@ -28,7 +28,6 @@ public void setMines()
     int c = (int)(Math.random()*NUM_COLS);
     if(bombs.contains(buttons[r][c]) == false){
       bombs.add(buttons[r][c]);
-      System.out.println(r + ", " + c);
     }
   }
 }
@@ -36,7 +35,6 @@ public void setMines()
 public void draw ()
 {
     background( 0 );
-    System.out.println(isLose());
     if(isWon() == true)
         displayWinningMessage();
   
@@ -81,7 +79,6 @@ public void displayLosingMessage()
       noLoop();
       for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).clicked = true;
-        System.out.println(i);
       }
    }  
 }
