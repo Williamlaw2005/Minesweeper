@@ -69,7 +69,18 @@ public boolean isWon()
 }
 public void displayLosingMessage()
 {
-
+if(isLose() == true && mousePressed == true)
+        buttons[NUM_ROWS/2][NUM_COLS/2 - 4].setLabel("Y");
+        buttons[NUM_ROWS/2][NUM_COLS/2 - 3].setLabel("O");
+        buttons[NUM_ROWS/2][NUM_COLS/2 - 2].setLabel("U");
+        buttons[NUM_ROWS/2][NUM_COLS/2 - 1].setLabel(" ");
+        buttons[NUM_ROWS/2][NUM_COLS/2].setLabel("L");
+        buttons[NUM_ROWS/2][NUM_COLS/2 + 1].setLabel("O");
+        buttons[NUM_ROWS/2][NUM_COLS/2 + 2].setLabel("S");
+        buttons[NUM_ROWS/2][NUM_COLS/2 + 3].setLabel("E");
+        noLoop();
+        for(int i = 0; i < bombs.size(); i++)
+          bombs.get(i).clicked = true;
 }
 public void displayWinningMessage()
 {
