@@ -35,7 +35,6 @@ public void setMines()
 
 public void draw ()
 {
-    background( 0 );
     if(isWon() == true)
         flagCount = 0;
         displayWinningMessage();
