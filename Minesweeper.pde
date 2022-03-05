@@ -75,6 +75,7 @@ public void displayLosingMessage()
       for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).clicked = true;
       }
+      noLoop();
    }  
 }
 public void displayWinningMessage()
