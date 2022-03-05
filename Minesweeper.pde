@@ -35,7 +35,6 @@ public void draw ()
 {
     if(isWon() == true)
         displayWinningMessage();
-  
 }
 public boolean isLose()
 {
@@ -46,7 +45,7 @@ public boolean isLose()
         }
       }
     }
-      return false;
+    return false;
 }
 public boolean isWon()
 {
@@ -61,7 +60,6 @@ public boolean isWon()
       }
     }
       return false;
-      
 }
 public void displayLosingMessage()
 {
@@ -74,7 +72,6 @@ public void displayLosingMessage()
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("O");
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("S");
       buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("E");
-      noLoop();
       for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).clicked = true;
       }
@@ -91,8 +88,7 @@ public void displayWinningMessage()
         buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("I");
         buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("N");
       noLoop();
-    }
-    
+    } 
 }
 public boolean isValid(int r, int c)
 { 
@@ -140,13 +136,11 @@ public class MSButton
           clicked = true;
         if(bombs.contains(this)){
             displayLosingMessage();
-            
-          } 
-   
-          else if(countMines(myRow, myCol) > 0){
+        } 
+        else if(countMines(myRow, myCol) > 0){
             setLabel(countMines(myRow, myCol));
-          }
-          else if(!isFlagged()) {
+        }
+        else if(!isFlagged()) {
           for(int r = -1; r <= 1; r++) {
             C_LOOP: for(int c = -1; c <= 1; c++) {
               if(!isValid(myRow + r, myCol + c) || buttons[myRow + r][myCol + c].getClicked() || buttons[myRow + r][myCol + c].isFlagged())
@@ -156,12 +150,11 @@ public class MSButton
             }
           }
         }
-        }  
+      }  
         if(mouseButton == RIGHT && clicked == false){
           flagged = !flagged;
         } 
-     }
-     
+   }
    public boolean getClicked() 
    {
      return clicked;
