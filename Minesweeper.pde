@@ -75,6 +75,7 @@ public void displayLosingMessage()
       for(int i = 0; i < bombs.size();i++) {
         bombs.get(i).clicked = true;
       }
+      noLoop();
    }
 }
 
@@ -88,7 +89,7 @@ public void displayWinningMessage()
         buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 1].setLabel("W");
         buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 2].setLabel("I");
         buttons[NUM_ROWS/2 - 1][NUM_COLS/2 + 3].setLabel("N");
-      
+      noLoop();
     } 
 }
 public boolean isValid(int r, int c)
